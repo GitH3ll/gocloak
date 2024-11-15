@@ -1,8 +1,9 @@
-module github.com/GitH3ll/gocloak/v13
+module github.com/GitH3ll/gocloak
 
 go 1.23
 
 require (
+	github.com/Nerzal/gocloak/v13 v13.9.0
 	github.com/go-resty/resty/v2 v2.15.3
 	github.com/golang-jwt/jwt/v5 v5.2.1
 	github.com/opentracing/opentracing-go v1.2.0
