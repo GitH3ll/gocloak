@@ -401,6 +401,19 @@ type GetRoleParams struct {
 	BriefRepresentation *bool   `json:"briefRepresentation,string,omitempty"`
 }
 
+// TestLdapConnectionParams represents the optional parameters for testing ldap connection
+type TestLdapConnectionParams struct {
+	Action            *string `json:"action,omitempty"`
+	AuthType          *string `json:"authType,omitempty"`
+	BindCredential    *string `json:"bindCredential,omitempty"`
+	BindDn            *string `json:"bindDn,omitempty"`
+	ComponentID       *string `json:"componentId,omitempty"`
+	ConnectionTimeout *string `json:"connectionTimeout,omitempty"`
+	ConnectionURL     *string `json:"connectionUrl,omitempty"`
+	StartTLS          *string `json:"startTLS,omitempty"`
+	UseTrustStoreSPI  *string `json:"useTrustStoreSpi,omitempty"`
+}
+
 // ClientMappingsRepresentation is a client role mappings
 type ClientMappingsRepresentation struct {
 	ID       *string `json:"id,omitempty"`

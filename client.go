@@ -4507,3 +4507,16 @@ func (g *GoCloak) GetUsersManagementPermissions(ctx context.Context, accessToken
 
 	return &result, nil
 }
+
+// TestLDAPConnection returns the management permissions for users
+func (g *GoCloak) TestLDAPConnection(ctx context.Context, accessToken, realm, action string, params TestLdapConnectionParams) (int, []byte, error) {
+	resp, err := g.GetRequestWithBearerAuth(ctx, accessToken).
+		SetBody(&params).
+		Get(g.getAdminRealmURL(realm, "users-management-permissions"))
+
+	if err != nil {
+		return 0, nil, err
+	}
+
+	return resp.StatusCode(), resp.Body(), nil
+}
