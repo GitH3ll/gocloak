@@ -411,7 +411,7 @@ type TestLdapConnectionParams struct {
 	ConnectionTimeout *string `json:"connectionTimeout,omitempty"`
 	ConnectionURL     *string `json:"connectionUrl,omitempty"`
 	StartTLS          *string `json:"startTLS,omitempty"`
-	UseTrustStoreSPI  *string `json:"useTrustStoreSpi,omitempty"`
+	UseTruststoreSPI  *string `json:"useTruststoreSpi,omitempty"`
 }
 
 // ClientMappingsRepresentation is a client role mappings
