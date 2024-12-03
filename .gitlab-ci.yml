@@ -29,6 +29,8 @@ test:lint:
     KUBERNETES_HELPER_MEMORY_LIMIT: "100Mi"
   stage: test
   script:
+    - go install github.com/vburenin/ifacemaker@latest
+    - $(go env GOPATH)/bin/ifacemaker -f client.go -s GoCloak -i GoCloakIface -p gocloak -o gocloak_iface.go
     - golangci-lint run --timeout=15m
   interruptible: true
   except:
