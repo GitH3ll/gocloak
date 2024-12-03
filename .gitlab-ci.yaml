@@ -1,0 +1,36 @@
+variables:
+  DOCKER_DRIVER: overlay2
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_TLS_CERTDIR: ""
+  DOCKER_REGISTRY_SERVICE: service.docker.nexus.cspm.lan
+  DOCKER_REGISTRY_SERVICE_IP: "10.200.218.6:8084"
+  DOCKER_REGISTRY_DEV: dev.docker.nexus.cspm.lan
+  DOCKER_REGISTRY_DEV_IP: "10.200.218.6:8082"
+
+stages:
+  - test
+
+test:lint:
+  image: ${DOCKER_REGISTRY_DEV_IP}/devops/go_backend:latest
+  tags:
+    - k8s-cspm
+  variables:
+    KUBERNETES_CPU_REQUEST: "300m"
+    KUBERNETES_CPU_LIMIT: "1"
+    KUBERNETES_MEMORY_REQUEST: "5Gi"
+    KUBERNETES_MEMORY_LIMIT: "6Gi"
+    KUBERNETES_SERVICE_CPU_REQUEST: "10m"
+    KUBERNETES_SERVICE_CPU_LIMIT: "50m"
+    KUBERNETES_SERVICE_MEMORY_REQUEST: "50Mi"
+    KUBERNETES_SERVICE_MEMORY_LIMIT: "100Mi"
+    KUBERNETES_HELPER_CPU_REQUEST: "10m"
+    KUBERNETES_HELPER_CPU_LIMIT: "50m"
+    KUBERNETES_HELPER_MEMORY_REQUEST: "50Mi"
+    KUBERNETES_HELPER_MEMORY_LIMIT: "100Mi"
+  stage: test
+  script:
+    - golangci-lint run --timeout=15m
+  interruptible: true
+  except:
+    - master
+    - main
